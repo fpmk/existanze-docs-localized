@@ -1,0 +1,24 @@
+{
+  "name": "apostrophe-i18n",
+  "version": "1.0.0",
+  "description": "Localization for ApostropheCMS 2.x",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpmk/existanze-docs-localized.git"
+  },
+  "keywords": [
+    "apostrophecms",
+    "i18n",
+    "localization"
+  ],
+  "author": "fotisp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fpmk/existanze-docs-localized/issues"
+  },
+  "homepage": "https://github.com/fpmk/existanze-docs-localized#readme"
+}
