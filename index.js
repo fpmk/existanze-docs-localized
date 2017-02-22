@@ -86,7 +86,7 @@ module.exports = {
       }else{
         req.locale = options.default;
       }
-
+      req.data.activeLocale = req.locale;
       return next();
 
     };
@@ -105,6 +105,8 @@ module.exports = {
       }
 
       if (!_.has(options.locales, matches[1])) {
+        req.locale = self.defaultLocale;
+        req.session.locale = req.locale;
         return next();
       }
 
@@ -187,6 +189,12 @@ module.exports = {
           return;
         }
 
+        if(u.isArea(doc[name])){
+          return;
+        }
+
+
+
         doc.localized[locale][name] = doc[name];
 
         if (_.has(doc.localized[self.defaultLocale], name)) {
@@ -236,6 +244,7 @@ module.exports = {
         _.each(module.schema,function(field){
 
           if(
+            field.type == "area" ||
             self.localized.indexOf(field.name) >= 0 ||
             self.localized.indexOf(moduleName+":"+field.name) >=0 ){
             field._localized = true;
