@@ -88,7 +88,11 @@ module.exports = {
 
             var matches = req.url.match(/^\/(\w+)(\/.*|\?.*|)$/);
 
-            if (matches && _.has(options.locales, matches[1])) {
+            if (!matches) {
+                return next();
+            }
+
+            if (_.has(options.locales, matches[1])) {
                 req.locale = matches[1];
                 req.session.locale = req.locale;
                 return next();
