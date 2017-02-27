@@ -87,21 +87,15 @@ module.exports = {
             }
 
             var matches = req.url.match(/^\/(\w+)(\/.*|\?.*|)$/);
-            if (!matches) {
-                //do not keep the session locale here
-                req.locale = self.defaultLocale;
+
+            if (_.has(options.locales, matches[1])) {
+                req.locale = matches[1];
                 req.session.locale = req.locale;
                 return next();
             }
 
-            if (!_.has(options.locales, matches[1])) {
-                req.locale = self.defaultLocale;
-                req.session.locale = req.locale;
-                return next();
-            }
-
-            req.locale = matches[1];
-            req.session.locale = req.locale;
+            // req.locale = matches[1];
+            // req.session.locale = req.locale;
             req.url = matches[2];
 
             if (!req.url.length) {
